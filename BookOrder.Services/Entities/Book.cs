@@ -26,5 +26,10 @@ namespace BookOrder.Entities
 
         [Required]
         public int InStockCount { get; set; }
-    }
+
+        /// <summary>
+        /// I love you very much my Dodok <3
+        /// </summary>
+		public DateTime? IssueToMemberDate { get; set; }
+	}
 }
