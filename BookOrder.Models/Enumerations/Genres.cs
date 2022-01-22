@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BookOrder.Services.Entities
+namespace BookOrder.Services.Models
 {
     public enum Genres
     {

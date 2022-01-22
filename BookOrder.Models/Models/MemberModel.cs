@@ -1,5 +1,4 @@
-﻿using BookOrder.Services.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -32,6 +31,6 @@ namespace BookOrder.Services.Models
 
         public string Email { get; set; }
 
-        public List<Book> Book { get; set; }
+        public List<BookModel> Book { get; set; }
     }
 }

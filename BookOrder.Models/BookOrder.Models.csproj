@@ -4,8 +4,4 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\BookOrder.Services\BookOrder.Services.csproj" />
-  </ItemGroup>
-
 </Project>

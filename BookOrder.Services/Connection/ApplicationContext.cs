@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BookOrder.Services.Connection
 {
-    public class AppContext:DbContext
+    public class ApplicationContext:DbContext
     {
         public DbSet<Book> Books { get; set; }
 
@@ -17,7 +17,7 @@ namespace BookOrder.Services.Connection
         public DbSet<BookIssues> BookIssues { get; set; }
 
 
-        public AppContext(DbContextOptions<AppContext> options)
+        public ApplicationContext(DbContextOptions<ApplicationContext> options)
            : base(options)
         {
             Database.EnsureCreated();   
