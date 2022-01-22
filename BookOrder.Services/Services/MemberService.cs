@@ -87,7 +87,10 @@ namespace BookOrder.Services.Services
         public async Task UpdateMemberAsync(MemberModel model)
         {
             var member = await _context.Members.FirstOrDefaultAsync(i => i.Id == model.Id);
-
+            if (member == null)
+            {
+                throw new Exception("Member not found");
+            }
             member.Name = model.Name;
             member.Surname = model.Surname;
             member.Address = model.Address;

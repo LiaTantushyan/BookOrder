@@ -58,5 +58,24 @@ namespace BookOrder.Api.Controllers
             var members = await _member.GetAllAsync();
             return Json(members);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateMember([FromBody] MemberModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                await _member.UpdateMemberAsync(model);
+                return Json(new { Success = true });
+            }
+            catch (Exception e)
+            {
+                return Json(new { Success = false, Data = model, Message = e.Message });
+            }
+        }
     }
 }
