@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BookOrder.Entities
+namespace BookOrder.Services.Entities
 {
     public enum Genders
     {

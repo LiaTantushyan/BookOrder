@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace BookOrder.Services.Entities
+namespace BookOrder.Services.Models
 {
-    public class Book
+    public class BookModel
     {
-        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -26,5 +27,5 @@ namespace BookOrder.Services.Entities
 
         [Required]
         public int InStockCount { get; set; }
-	}
+    }
 }
