@@ -15,10 +15,16 @@ namespace BookOrder.Services.Services
     {
         private readonly ApplicationContext _context;
 
+        public MemberService()
+        {
+
+        } 
+
         public MemberService(ApplicationContext context)
         {
             _context = context;
         }
+
         public async Task CreateMemberAsync(MemberModel model)
         {
             var member = new Member
@@ -35,7 +41,7 @@ namespace BookOrder.Services.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteMemberByIdAsync(int id)
+        public async Task DeleteMemberByIdAsync(int? id)
         {
             var member = await _context.Members.FirstOrDefaultAsync(i => i.Id == id);
 
@@ -59,7 +65,7 @@ namespace BookOrder.Services.Services
                 Gender = member.Gender,
             }).ToListAsync();
         }
-        public async Task<MemberModel> GetMemberByIdAsync(int id)
+        public async Task<MemberModel> GetMemberByIdAsync(int? id)
         {
             var member = await _context.Members.FirstOrDefaultAsync(i => i.Id == id);
             if (member == null)
