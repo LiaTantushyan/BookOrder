@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BookOrder.Entities
 {
-    public enum Genre
+    public enum Genres
     {
         Fantasy,
         Mystery,

@@ -2,7 +2,7 @@
 
 namespace BookOrder.Entities
 {
-    public enum Gender
+    public enum Genders
     {
         Male,
         Female,
