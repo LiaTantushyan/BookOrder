@@ -18,7 +18,7 @@ namespace BookOrder.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateBookIssue(int? memberid,int? bookid)
         {
-            if(!memberid.HasValue && !bookid.HasValue)
+            if(!memberid.HasValue || !bookid.HasValue)
             {
                 return Json("Invalid id");
             }

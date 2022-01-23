@@ -26,20 +26,27 @@ namespace BookOrder.Services.Services
         public async Task BookToMember(int memberid, int bookid)
         {
             var member = await _member.GetMemberByIdAsync(memberid);
+
+            if (member == null)
+            {
+                return;
+            }
+
             var book = await _book.GetBookByIdAsync(bookid);
 
-            if (member != null && book != null)
+            if (book == null)
             {
-                var bookIssue = new BookIssue
-                {
-                    MemberId = memberid,
-                    BookId = bookid,
-                    DateOfIssue = DateTime.Now,
-                };
-                await _context.BookIssues.AddAsync(bookIssue);
-
-                await _context.SaveChangesAsync();
+                return;
             }
+            var bookIssue = new BookIssue
+            {
+                MemberId = memberid,
+                BookId = bookid,
+                DateOfIssue = DateTime.Now,
+            };
+            await _context.BookIssues.AddAsync(bookIssue);
+
+            await _context.SaveChangesAsync();
         }
     }
 }
