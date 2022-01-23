@@ -29,7 +29,8 @@ namespace BookOrder.Services.Services
                 IsAvailable = model.IsAvailable,
                 InStockCount = model.InStockCount
             };
-            _context.Books.Add(book);
+            await _context.Books.AddAsync(book);
+
             await _context.SaveChangesAsync();
         }
 
@@ -38,9 +39,11 @@ namespace BookOrder.Services.Services
             if (id.HasValue)
             {
                 var book = await _context.Books.FirstOrDefaultAsync(i => i.Id == id);
+
                 if (book != null)
                 {
                     _context.Books.Remove(book);
+
                     await _context.SaveChangesAsync();
                 }
             }
@@ -48,7 +51,7 @@ namespace BookOrder.Services.Services
 
         public async Task<List<BookModel>> GetAllAsync()
         {
-            return await _context.Books.Select(book=> new BookModel
+            return await _context.Books.Select(book => new BookModel
             {
                 Name = book.Name,
                 GenreId = book.GenreId,
@@ -69,27 +72,29 @@ namespace BookOrder.Services.Services
             return new BookModel
             {
                 Name = book.Name,
-                GenreId=book.GenreId,
-                PageCounts=book.PageCounts,
-                Author=book.Author,
-                IsAvailable=book.IsAvailable,
-                InStockCount=book.InStockCount
-
+                GenreId = book.GenreId,
+                PageCounts = book.PageCounts,
+                Author = book.Author,
+                IsAvailable = book.IsAvailable,
+                InStockCount = book.InStockCount
             };
         }
 
         public async Task UpdateBookAsync(BookModel model)
         {
-            var book = _context.Books.FirstOrDefault(i => i.Id == model.Id);
+            var book = await _context.Books.FirstOrDefaultAsync(i => i.Id == model.Id);
             if (book == null)
+            {
                 throw new Exception("Not found any book");
+            }
             book.Name = model.Name;
             book.GenreId = model.GenreId;
             book.PageCounts = model.PageCounts;
             book.Author = model.Author;
             book.InStockCount = model.InStockCount;
             book.IsAvailable = model.IsAvailable;
-            await  _context.SaveChangesAsync();
+
+            await _context.SaveChangesAsync();
         }
     }
 }

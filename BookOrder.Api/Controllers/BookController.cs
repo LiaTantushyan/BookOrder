@@ -36,30 +36,30 @@ namespace BookOrder.Api.Controllers
             {
                 return Json(new { Success = false, Message = "Id is null" });
             }
-            var mem = await _book.GetBookByIdAsync(id);
-            return Json(mem);
+            var book = await _book.GetBookByIdAsync(id);
+            return Json(book);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteMemberById(int? id)
+        public async Task<IActionResult> DeleteBookById(int? id)
         {
             if (!id.HasValue)
             {
                 return Json(new { Success = false, Message = "Id is null" });
             }
             await _book.DeleteBookByIdAsync(id);
-            return Json(new { message = "Selected member was deleted" });
+            return Json(new { message = "Selected book was deleted" });
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllMember()
+        public async Task<IActionResult> GetAllBook()
         {
-            var members = await _book.GetAllAsync();
-            return Json(members);
+            var books = await _book.GetAllAsync();
+            return Json(books);
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateMember([FromBody] BookModel model)
+        public async Task<IActionResult> UpdateBook([FromBody] BookModel model)
         {
             if (!ModelState.IsValid)
             {
