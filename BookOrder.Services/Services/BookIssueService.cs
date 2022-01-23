@@ -23,7 +23,7 @@ namespace BookOrder.Services.Services
             _member = member;
         }
 
-        public async Task BookToMember(int memberid, int bookid)
+        public async Task IssueBookToMemberAsync(int memberid, int bookid)
         {
             var member = await _member.GetMemberByIdAsync(memberid);
 
@@ -45,6 +45,21 @@ namespace BookOrder.Services.Services
                 DateOfIssue = DateTime.Now,
             };
             await _context.BookIssues.AddAsync(bookIssue);
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task ReturnBookAsync(int memberid, int bookid)
+        {
+            var bookIssue = await _context.BookIssues.FirstOrDefaultAsync(i => i.MemberId == memberid && i.BookId == bookid);
+
+            if (bookIssue == null)
+            {
+                return;
+            }
+
+            bookIssue.IsReturned = true;
+            bookIssue.DateOfReturn = DateTime.Now;
 
             await _context.SaveChangesAsync();
         }

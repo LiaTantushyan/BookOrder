@@ -9,6 +9,7 @@ namespace BookOrder.Services.Interfaces
 {
     public interface IBookIssueService
     {
-        Task BookToMember(int memberid, int bookid);
+        Task IssueBookToMemberAsync(int memberid, int bookid);
+        Task ReturnBookAsync(int memberid, int bookid);
     }
 }

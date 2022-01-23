@@ -16,13 +16,25 @@ namespace BookOrder.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBookIssue(int? memberid,int? bookid)
+        public async Task<IActionResult> CreateBookIssue(int? memberid, int? bookid)
         {
-            if(!memberid.HasValue || !bookid.HasValue)
+            if (!memberid.HasValue || !bookid.HasValue)
             {
-                return Json("Invalid id");
+                return Json("Invalid Id");
             }
-            await _issue.BookToMember((int)memberid, (int)bookid);
+            await _issue.IssueBookToMemberAsync((int)memberid, (int)bookid);
+
+            return Json(new { success = true });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ReturnBook(int? memberid, int? bookid)
+        {
+            if (!memberid.HasValue || !bookid.HasValue)
+            {
+                return Json("Invalid Id");
+            }
+            await _issue.ReturnBookAsync((int)memberid, (int)bookid);
 
             return Json(new { success = true });
         }
