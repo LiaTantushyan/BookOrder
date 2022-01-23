@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BookOrder.Services.Entities
 {
-    public class BookIssues
+    public class BookIssue
     {
         [Key]
 		public int Id { get; set; }
@@ -20,5 +20,9 @@ namespace BookOrder.Services.Entities
 
         [Required]
         public DateTime DateOfIssue { get; set; }
+
+        public DateTime? DateOfReturn { get; set; }
+
+        public bool? IsReturned { get; set; }
     }
 }

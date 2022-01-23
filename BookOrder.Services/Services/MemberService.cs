@@ -15,11 +15,6 @@ namespace BookOrder.Services.Services
     {
         private readonly ApplicationContext _context;
 
-        public MemberService()
-        {
-
-        } 
-
         public MemberService(ApplicationContext context)
         {
             _context = context;

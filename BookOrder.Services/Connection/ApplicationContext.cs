@@ -14,7 +14,7 @@ namespace BookOrder.Services.Connection
 
         public DbSet<Member> Members { get; set; }
 
-        public DbSet<BookIssues> BookIssues { get; set; }
+        public DbSet<BookIssue> BookIssues { get; set; }
 
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options)

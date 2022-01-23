@@ -52,7 +52,7 @@ namespace BookOrder.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllBook()
+        public async Task<IActionResult> GetAllBooks()
         {
             var books = await _book.GetAllAsync();
             return Json(books);

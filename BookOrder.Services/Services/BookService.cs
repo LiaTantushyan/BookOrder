@@ -36,16 +36,13 @@ namespace BookOrder.Services.Services
 
         public async Task DeleteBookByIdAsync(int? id)
         {
-            if (id.HasValue)
+            var book = await _context.Books.FirstOrDefaultAsync(i => i.Id == id);
+
+            if (book != null)
             {
-                var book = await _context.Books.FirstOrDefaultAsync(i => i.Id == id);
+                _context.Books.Remove(book);
 
-                if (book != null)
-                {
-                    _context.Books.Remove(book);
-
-                    await _context.SaveChangesAsync();
-                }
+                await _context.SaveChangesAsync();
             }
         }
 
