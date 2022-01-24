@@ -31,6 +31,6 @@ namespace BookOrder.Services.Entities
 
         public string Email { get; set; }
 
-        public List<Book> Book { get; set; }
+        public List<Book> Books { get; set; }
     }
 }
