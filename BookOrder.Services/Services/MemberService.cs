@@ -60,7 +60,7 @@ namespace BookOrder.Services.Services
                 Gender = member.Gender,
             }).ToListAsync();
         }
-        public async Task<MemberModel> GetMemberByIdAsync(int? id)
+        public async Task<MemberModel> GetMemberByIdAsync(int id)
         {
             var member = await _context.Members.FirstOrDefaultAsync(i => i.Id == id);
             if (member == null)
@@ -95,6 +95,39 @@ namespace BookOrder.Services.Services
             member.Gender = model.Gender;
 
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<Book>> GetMemberBooksHistoryAsync(int memberid)
+        {
+            List<Book> bookList = new List<Book>();
+            var member = await GetMemberByIdAsync(memberid);
+            if (member == null)
+            {
+                return null;
+            }
+            var booksId = _context.BookIssues.Where
+                (i => i.MemberId == memberid
+                && i.IsReturned == true
+                && i.DateOfReturn != null)
+                .Select(i => i.BookId);
+            bookList = await _context.Books.Where(i => booksId.Contains(i.Id)).ToListAsync();
+            return bookList;
+        }
+
+        public async Task<Book> GetMembersCurrentBook(int memberId)
+        {
+            var member = await GetMemberByIdAsync(memberId);
+            if (member == null)
+            {
+                return null;
+            }
+            var bookId = _context.BookIssues.OrderByDescending(i => i.BookId).FirstOrDefaultAsync
+                (i => i.MemberId == memberId
+                && i.IsReturned == false
+                && i.DateOfReturn == null);
+            var currBook = await _context.Books.FirstOrDefaultAsync(i => i.Id == bookId.Id);
+
+            return currBook;
         }
     }
 }

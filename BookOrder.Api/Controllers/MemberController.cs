@@ -37,7 +37,7 @@ namespace BookOrder.Api.Controllers
             {
                 return Json(new { Success = false, Message = "Id is null" });
             }
-            var mem = await _member.GetMemberByIdAsync(id);
+            var mem = await _member.GetMemberByIdAsync((int)id);
             return Json(mem);
         }
 
@@ -49,7 +49,7 @@ namespace BookOrder.Api.Controllers
                 return Json(new { Success = false, Message = "Id is null" });
             }
             await _member.DeleteMemberByIdAsync(id);
-            return Json(new { message="Selected member was deleted"});
+            return Json(new { message = "Selected member was deleted" });
         }
 
         [HttpGet]
@@ -76,6 +76,28 @@ namespace BookOrder.Api.Controllers
             {
                 return Json(new { Success = false, Data = model, Message = e.Message });
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetMembersCurrentBook(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return Json(new { Success = false, Message = "Id is null" });
+            }
+            var book = await _member.GetMembersCurrentBook((int)id);
+            return Json(book);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetMemberBooksHistory(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return Json(new { Success = false, Message = "Id is null" });
+            }
+            var book = await _member.GetMemberBooksHistoryAsync((int)id);
+            return Json(book);
         }
     }
 }

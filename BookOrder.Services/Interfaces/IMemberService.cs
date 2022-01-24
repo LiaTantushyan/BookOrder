@@ -1,4 +1,5 @@
-﻿using BookOrder.Services.Models;
+﻿using BookOrder.Services.Entities;
+using BookOrder.Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,9 @@ namespace BookOrder.Services.Interfaces
         Task CreateMemberAsync(MemberModel model);
         Task DeleteMemberByIdAsync(int? id);
         Task UpdateMemberAsync(MemberModel model);
-        Task<MemberModel> GetMemberByIdAsync(int? id);
+        Task<MemberModel> GetMemberByIdAsync(int id);
         Task<List<MemberModel>> GetAllAsync();
+        Task<List<Book>> GetMemberBooksHistoryAsync(int memberid);
+        Task<Book> GetMembersCurrentBook(int memberid);
     }
 }
