@@ -26,5 +26,7 @@ namespace BookOrder.Services.Entities
 
         [Required]
         public int InStockCount { get; set; }
+
+        public List<Member> Members { get; set; }
 	}
 }

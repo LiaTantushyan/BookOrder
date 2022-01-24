@@ -10,10 +10,10 @@ namespace BookOrder.Services.Entities
     public class BookIssue
     {
         [Key]
-		public int Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
-		public int MemberId { get; set; }
+        public int MemberId { get; set; }
 
         [Required]
         public int BookId { get; set; }
@@ -24,5 +24,9 @@ namespace BookOrder.Services.Entities
         public DateTime? DateOfReturn { get; set; }
 
         public bool? IsReturned { get; set; }
+
+        public Book Book { get; set; }
+
+        public Member Member { get; set; }
     }
 }

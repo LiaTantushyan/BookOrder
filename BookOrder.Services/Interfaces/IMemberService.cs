@@ -11,11 +11,11 @@ namespace BookOrder.Services.Interfaces
     public interface IMemberService
     {
         Task CreateMemberAsync(MemberModel model);
-        Task DeleteMemberByIdAsync(int? id);
+        Task DeleteMemberByIdAsync(int id);
         Task UpdateMemberAsync(MemberModel model);
         Task<MemberModel> GetMemberByIdAsync(int id);
         Task<List<MemberModel>> GetAllAsync();
         Task<List<Book>> GetMemberBooksHistoryAsync(int memberid);
-        Task<Book> GetMembersCurrentBook(int memberid);
+        Task<Book> GetMembersCurrentBookAsync(int memberid);
     }
 }

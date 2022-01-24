@@ -36,7 +36,7 @@ namespace BookOrder.Services.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteMemberByIdAsync(int? id)
+        public async Task DeleteMemberByIdAsync(int id)
         {
             var member = await _context.Members.FirstOrDefaultAsync(i => i.Id == id);
 
@@ -114,7 +114,7 @@ namespace BookOrder.Services.Services
             return bookList;
         }
 
-        public async Task<Book> GetMembersCurrentBook(int memberId)
+        public async Task<Book> GetMembersCurrentBookAsync(int memberId)
         {
             var member = await GetMemberByIdAsync(memberId);
             if (member == null)

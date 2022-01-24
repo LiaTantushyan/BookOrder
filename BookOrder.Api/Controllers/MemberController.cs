@@ -37,7 +37,7 @@ namespace BookOrder.Api.Controllers
             {
                 return Json(new { Success = false, Message = "Id is null" });
             }
-            var mem = await _member.GetMemberByIdAsync((int)id);
+            var mem = await _member.GetMemberByIdAsync(id.Value);
             return Json(mem);
         }
 
@@ -48,7 +48,7 @@ namespace BookOrder.Api.Controllers
             {
                 return Json(new { Success = false, Message = "Id is null" });
             }
-            await _member.DeleteMemberByIdAsync(id);
+            await _member.DeleteMemberByIdAsync(id.Value);
             return Json(new { message = "Selected member was deleted" });
         }
 
@@ -85,7 +85,7 @@ namespace BookOrder.Api.Controllers
             {
                 return Json(new { Success = false, Message = "Id is null" });
             }
-            var book = await _member.GetMembersCurrentBook((int)id);
+            var book = await _member.GetMembersCurrentBookAsync(id.Value);
             return Json(book);
         }
 
@@ -96,7 +96,7 @@ namespace BookOrder.Api.Controllers
             {
                 return Json(new { Success = false, Message = "Id is null" });
             }
-            var book = await _member.GetMemberBooksHistoryAsync((int)id);
+            var book = await _member.GetMemberBooksHistoryAsync(id.Value);
             return Json(book);
         }
     }
